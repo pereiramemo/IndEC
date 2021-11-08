@@ -6,8 +6,6 @@ library(tidyverse)
 library(vegan)
 library(doParallel)
 
-setwd("/home/epereira/workspace/packages/R")
-
 ###############################################################################
 ### 2. Def wilcox subfunction
 ###############################################################################
