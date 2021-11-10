@@ -19,5 +19,5 @@ wilcoxon_test_runner(X, G, P = 0.001, NSLOTS = 4)
 This function returns a list where each element corresponds to a group (tested against all the other groups) and consists of a vector of significant features.
 }
 \description{
-This function performs a Wilcoxon rank sum test for every feature between groups.
+This function test the differential abundance of features (e.g., ASVs, OTUs, or OPUs) between groups using the Wilcoxon rank sum test. The function includes the rarification of the abundance matrix and the filtering of singletons.
 }
