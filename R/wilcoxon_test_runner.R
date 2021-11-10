@@ -33,7 +33,7 @@ wilcoxon_test_runner_subfunction <- function(X_g, X_r, P, j) {
 
 #' Wilcoxon rank sum test runner
 #'
-#' This function test the differential abundance of features (e.g., ASVs, OTUs, or OPUs) between groups using the Wilcoxon rank sum test. The function includes the rarification of the abundance matrix and the filtering of singletons.
+#' This function tests the differential abundance of features (e.g., ASVs, OTUs, or OPUs) between groups using the Wilcoxon rank sum test. The function includes the rarification of the abundance matrix and the filtering of singletons.
 #' @param X Abundance table (i.e., data.frame or matrix) formatted as samples x features. Sample names should be set as rownames.
 #' @param G Groups table (i.e., data.frame). This table should have two columns: the first column with the sample names and the second column with groups numbers. 
 #' @param P P-value used to select singificant features. Default 1e-3.
