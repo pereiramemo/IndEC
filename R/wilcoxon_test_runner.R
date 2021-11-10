@@ -84,7 +84,7 @@ wilcoxon_test_runner <- function(X, G, P = 1e-3, NSLOTS = 4){
             filter(group %in% GROUPS[(! GROUPS %in% i )])
     
   x <- foreach(j = ASVS) %dopar% 
-       wilcox_test_runner_subfunction(X_g, X_r, P, j)
+       wilcoxon_test_runner_subfunction(X_g, X_r, P, j)
   
   SELECTED_ASVS[[i]]<- unlist(x)
   
