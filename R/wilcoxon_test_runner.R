@@ -31,7 +31,9 @@ wilcoxon_test_runner_subfunction <- function(X_g, X_r, P, j) {
 #' @param G Groups table (i.e., data.frame). This table should have two columns: the first column with the sample names and the second column with groups numbers. 
 #' @param P P-value used to select singificant features. Default 1e-3.
 #' @param NSLOTS Number of cores used. Default 4. 
-#' @return This function returns a list where each element corresponds to a group (tested against all the other groups) and consists of a vector of significant features. 
+#' @return This function returns a list where each element corresponds to a group (tested against all the other groups) and consists of a vector of significant features.
+#' @importFrom foreach %dopar%
+#' @importFrom dplyr %>%
 #' @export
 
 wilcoxon_test_runner <- function(X, G, P = 1e-3, NSLOTS = 4){
@@ -64,8 +66,8 @@ wilcoxon_test_runner <- function(X, G, P = 1e-3, NSLOTS = 4){
     
     X_r <- dplyr::filter(X_ext, group %in% GROUPS[(! GROUPS %in% i )])
     
-  x <- foreach(j = ASVS) %dopar% 
-         wilcoxon_test_runner_subfunction(X_g, X_r, P, j)
+    x <- foreach::foreach(j = ASVS) %dopar% 
+           wilcoxon_test_runner_subfunction(X_g, X_r, P, j)
   
   SELECTED_ASVS[[i]] <- unlist(x)
   
