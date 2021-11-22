@@ -7,7 +7,7 @@
 wilcoxon_test_runner(X, G, P = 0.001, NSLOTS = 4)
 }
 \arguments{
-\item{X}{Abundance table (i.e., data.frame or matrix) formatted as samples x features. Sample names should be set as rownames.}
+\item{X}{Abundance table (i.e., data.frame) formatted as samples x features. Sample names should be set as rownames.}
 
 \item{G}{Groups table (i.e., data.frame). This table should have two columns: the first column with the sample names and the second column with groups numbers.}
 
@@ -19,5 +19,5 @@ wilcoxon_test_runner(X, G, P = 0.001, NSLOTS = 4)
 This function returns a list where each element corresponds to a group (tested against all the other groups) and consists of a vector of significant features.
 }
 \description{
-This function tests the differential abundance of features (e.g., ASVs, OTUs, or OPUs) between groups using the Wilcoxon rank sum test. The function includes the rarification of the abundance matrix and the filtering of singletons.
+This function tests the differential abundance of features (e.g., ASVs, OTUs, or OPUs) between groups using the Wilcoxon rank sum test.
 }
