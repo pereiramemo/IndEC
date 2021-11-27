@@ -2,6 +2,11 @@
 ### 1. Def wilcoxon subfunction
 ###############################################################################
 
+# X <- X 
+# G <- WQI_GROUPS_TBL 
+# NSLOTS <- 6 
+# P <- 5e-2
+
 wilcoxon_test_runner_subfunction <- function(X_g, X_r, P, j) {
   
   X_g_j <- dplyr::select(X_g, all_of(j))[,1]
@@ -15,7 +20,7 @@ wilcoxon_test_runner_subfunction <- function(X_g, X_r, P, j) {
     x <- stats::wilcox.test(X_g_j, X_r_j, alternative = "two.sided")
     
     if (x$p.value <= P) {
-      return(j)
+      return(data.frame(asv = j, pval = x$p.value))
     } 
   } 
 }
@@ -69,7 +74,11 @@ wilcoxon_test_runner <- function(X, G, P = 1e-3, NSLOTS = 4){
     x <- foreach::foreach(j = ASVS) %dopar% 
            wilcoxon_test_runner_subfunction(X_g, X_r, P, j)
   
-  SELECTED_ASVS[[i]] <- unlist(x)
+    output_df <- do.call("rbind",x) %>%
+                 as.data.frame() %>%
+                 arrange(pval)
+  
+    SELECTED_ASVS[[i]] <- output_df
   
   }
   
